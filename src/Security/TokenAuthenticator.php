@@ -8,14 +8,20 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
-use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CustomCredentialsBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
-use Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Authenticator\JWTAuthenticator;
 
-class TokenAuthenticator extends AbstractAuthenticator
+class TokenAuthenticator extends JWTAuthenticator
 {
+private $userProvider;
+
+public function __construct(UserProviderInterface $userProvider)
+{
+$this->userProvider = $userProvider;
+}
+
 public function supports(Request $request): ?bool
 {
 return $request->headers->has('Authorization');
@@ -29,16 +35,9 @@ if (null === $token) {
 throw new CustomUserMessageAuthenticationException('No API token provided');
 }
 
-return new SelfValidatingPassport(
-new UserBadge($token, function ($userIdentifier) use ($token) {
-// Load the user using the token
-return new PostAuthenticationToken($userIdentifier, 'main', ['ROLE_USER'], $token);
-}),
-[new CustomCredentialsBadge(function($credentials, UserProviderInterface $userProvider) {
-// Custom credential check logic (e.g., validate token)
-return true;
-}, $token)]
-);
+return new SelfValidatingPassport(new UserBadge($token, function ($userIdentifier) use ($token) {
+return $this->userProvider->loadUserByIdentifier($userIdentifier);
+}));
 }
 
 public function onAuthenticationSuccess(Request $request, $token, string $firewallName): ?Response
