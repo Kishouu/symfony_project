@@ -24,12 +24,6 @@ git clone https://github.com/Kishouu/symfony_project.git
 
 cd symfony_project
 
-3. Switch to the Workable Branch
-
-The functional project is located in the new-branch-name branch, not in the default master branch. Switch to it using:
-
-git checkout new-branch-name
-
 4. Install Dependencies
 
 composer install
