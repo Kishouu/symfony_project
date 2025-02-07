@@ -16,93 +16,80 @@
 
 ## ⚙️ Setup & Installation
 
-### 1️⃣ Clone the Repository  
-```sh
+### 1. Clone the Repository
+
 git clone https://github.com/Kishouu/symfony_project.git
-```  
 
-### 2️⃣ Navigate to the Project Directory  
-```sh
+2. Navigate to the Project Directory
+
 cd symfony_project
-```  
 
-### 3️⃣ Switch to the Workable Branch  
-💡 The functional project is located in the **`new-branch-name`** branch, not in the default `master` branch. Switch to it using:  
-```sh
+3. Switch to the Workable Branch
+
+The functional project is located in the new-branch-name branch, not in the default master branch. Switch to it using:
+
 git checkout new-branch-name
-```  
 
-### 4️⃣ Install Dependencies  
-```sh
+4. Install Dependencies
+
 composer install
-```  
 
-### 5️⃣ Configure Environment Variables  
-Edit the `.env` file and update the database connection details:  
-```ini
+5. Configure Environment Variables
+
+Edit the .env file and update the database connection details:
+
 DATABASE_URL="mysql://root:12345678@127.0.0.1:3306/symfony-api?serverVersion=8.0.32&charset=utf8mb4"
-```
 
-### 6️⃣ Set Up the Database  
-Create the database:  
-```sh
+6. Set Up the Database
+
+Create the database:
+
 php bin/console doctrine:database:create
-```  
 
-Run database migrations:  
-```sh
+Run database migrations:
+
 php bin/console doctrine:migrations:migrate
-```  
 
-### 7️⃣ Generate JWT Keys  
-```sh
+7. Generate JWT Keys
+
 php bin/console lexik:jwt:generate-keypair
-```  
 
-### 8️⃣ Start the Development Server  
-```sh
+8. Start the Development Server
+
 symfony server:start
-```  
-🌐 Now, open your browser and visit: **[http://localhost:8000](http://localhost:8000)**  
 
----
+Now, open your browser and visit: http://localhost:8000
 
-## 🔍 API Testing with Postman  
-📁 The Postman collection for this API can be found in:  
-```sh
+API Testing with Postman
+
+The Postman collection for this API can be found in:
+
 /symfony_project/symfony-app.postman_collection.json
-```  
 
----
+Additional Features
 
-## 🚀 Additional Features  
+Load Data Fixtures
 
-### 🔄 Load Data Fixtures  
-```sh
 php bin/console doctrine:fixtures:load
-```  
 
-### 🛠 Custom CLI Commands  
-- **Add a new user**:  
-  ```sh
-  php bin/console app:add-user user@example.com yourpassword
-  ```  
-- **List all users**:  
-  ```sh
-  php bin/console app:list-users
-  ```  
+Custom CLI Commands
 
-### 🧪 Run Tests  
-- ✅ **PHP Unit Tests**:  
-  ```sh
-  php bin/phpunit
-  ```  
-- 🔍 **Behat Tests**:  
-  ```sh
-  vendor/bin/behat
-  ```  
+Add a new user:
 
----
+php bin/console app:add-user user@example.com yourpassword
 
+List all users:
 
+php bin/console app:list-users
 
+Run Tests
+
+PHP Unit Tests:
+
+php bin/phpunit
+
+Behat Tests:
+
+vendor/bin/behat
+
+Happy coding!
