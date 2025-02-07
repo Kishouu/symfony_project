@@ -16,12 +16,15 @@
         "symfony/dotenv": "7.0.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.0.*",
-        "symfony/runtime": "7.0.*",
+        "symfony/http-foundation": "7.1.7",
+        "symfony/process": "7.1.7",
+        "symfony/runtime": "7.1.7",
         "symfony/security-bundle": "7.0.*",
         "symfony/security-core": "7.0.*",
-        "symfony/security-http": "7.0.*",
-        "symfony/validator": "7.0.*",
-        "symfony/yaml": "7.0.*"
+        "symfony/security-http": "7.1.8",
+        "symfony/validator": "7.1.4",
+        "symfony/yaml": "7.0.*",
+        "symfony/symfony": "7.0.*"
     },
     "config": {
         "allow-plugins": {
@@ -73,9 +76,11 @@
         }
     },
     "require-dev": {
-        "behat/behat": "^3.18",
+        "behat/behat": "^3.8",
         "doctrine/doctrine-fixtures-bundle": "^3.6",
-        "phpunit/phpunit": "^11.5",
-        "symfony/maker-bundle": "^1.62"
+        "phpunit/phpunit": "^9.5",
+        "symfony/maker-bundle": "^1.62",
+        "behat/mink": "^1.8",
+        "behat/mink-goutte-driver": "^1.2"
     }
 }
